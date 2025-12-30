@@ -18,3 +18,14 @@ class BasicHealPotion(Item):
         heal = min(player.max_life * 0.3, 30)
         player.life = min(player.life + heal, player.max_life)
         print(f"You healed {heal} HP")
+
+class FullHealPotion(Item):
+    def __init__(self):
+        super().__init__(
+            name="Full Heal Potion",
+            description="Restore 100%% of your HP",
+            price=120
+        )
+    def use(self, player):
+        player.life = player.max_life
+        print("Your HP has been maximized")
