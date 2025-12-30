@@ -11,7 +11,8 @@ class BasicHealPotion(Item):
     def __init__(self):
         super().__init__(
             name="Basic Heal Potion",
-            description="Restore 30%% of max HP, limit 30HP"
+            description="Restore 30%% of max HP, limit 30HP",
+            price=30
         )
     def use(self, player):
         heal = min(player.max_life * 0.3, 30)
