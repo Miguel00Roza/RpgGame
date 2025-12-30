@@ -9,8 +9,7 @@ class Player:
         self.gold = 0
         self.xp = 0
         self.required_xp = 10
-        self.basic_heals = 5
-        self.full_heals = 3
+        self.inventory = []
 
     def levelUp(self):
         # Adicionei esse increase pra dar uma balanceada, player mid game ja tava com vida pra kct skkdsakdas
@@ -38,17 +37,5 @@ class Player:
         print(f"life: {self.life}/{self.max_life}")
         print(f"Gold: {self.gold}")
         print(f"xp: {self.xp}/{self.required_xp}")
-        print(f"Basic_heal: {self.basic_heals}")
-        print(f"Full_heal: {self.full_heals}")
+        print(f"Inventory: {self.inventory}")
         print("-"*55)
-    
-    def basic_heal(self):
-        heal = 30
-        self.life = min(self.life + heal, self.max_life)
-        self.basic_heals -= 1
-        print(f"You healed {heal} HP, current basic heals: {self.basic_heals}")
-    
-    def max_heal(self):
-        self.life = self.max_life
-        self.full_heals -= 1
-        print(f"Your HP has been maximized, current full heals: {self.full_heals}")

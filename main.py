@@ -5,7 +5,7 @@ from combat import combat
 player = Player()
 shop = Shop()
 
-
+player.gold = 9999999
 
 while True:
     if player.life <= 0:
