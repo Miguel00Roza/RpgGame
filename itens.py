@@ -15,7 +15,8 @@ class BasicHealPotion(Item):
             price=30
         )
     def use(self, player):
-        heal = min(player.max_life * 0.3, 30)
+        heal = int(min(player.max_life * 0.3, 30))
+        # Coloco o int pois quando eu multiplico por 0.3 o numero vira float
         player.life = min(player.life + heal, player.max_life)
         print(f"You healed {heal} HP")
 
