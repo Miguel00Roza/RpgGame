@@ -8,15 +8,16 @@ from itens import BasicHealPotion, FullHealPotion
 class Shop:
     def __init__(self):
         self.itens = [
-            BasicHealPotion(),
-            FullHealPotion()
+            BasicHealPotion,
+            FullHealPotion
         ]
 
     def buy(self, player_buying):
         while True:
             print("0-Exit")
             for i, item in enumerate(self.itens):
-                print(f"{i + 1}-{item.name}({item.price} golds)")
+                temp_item = item()
+                print(f"{i + 1}-{temp_item.name}({temp_item.price} golds)")
             choice = int(input("What do you want to buy?"))
             if choice == 0:
                 print("bye bye")
@@ -25,7 +26,13 @@ class Shop:
                 if choice > len(self.itens):
                     print("We dont have this")
                 else:
-                    item_Buying = self.itens[choice - 1] # -1 because i show the index whit plus one on the For Loop
-                    player_buying.inventory.append(item_Buying)
-                    print(f"You buyed a {item_Buying.name}")
+                    item_Buying_class = self.itens[choice - 1] # -1 because i show the index whit plus one on the For Loop
+                    item_buying = item_Buying_class()
+                    if player_buying.gold < item_buying.price:
+                        print("you don't have gold enough")
+                    else:
+                        player_buying.gold -= item_buying.price
+                        
+                        player_buying.add_item(item_buying)
+                        print(f"You buyed a {item_buying.name}")
         
