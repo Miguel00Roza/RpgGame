@@ -58,7 +58,8 @@ class Player:
         items_inventory = []
         for i, item in enumerate(self.inventory):
                 print(f"{i + 1}-{item}")
-                items_inventory.append(item)
+                quantity = self.inventory[item]["quantity"]
+                items_inventory.append(f"{item}({quantity})")
         return items_inventory
     
     def use_item(self):
@@ -81,6 +82,7 @@ class Player:
                     item_chosen = data["item"]
 
                     item_chosen.use(self)
+                    # Verifica se é um item empilhavel ( equipamentos não são)
                     if item_chosen.consumable:
                         data["quantity"] -= 1
                         if data["quantity"] == 0:
