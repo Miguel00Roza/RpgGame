@@ -10,6 +10,7 @@ class Player:
         self.xp = 0
         self.required_xp = 10
         self.inventory = {}
+        self.equipament = None
 
     def levelUp(self):
         # Adicionei esse increase pra dar uma balanceada, player mid game ja tava com vida pra kct skkdsakdas
@@ -38,6 +39,7 @@ class Player:
         print(f"Gold: {self.gold}")
         print(f"xp: {self.xp}/{self.required_xp}")
         print(f"inventory: {self.show_inventory()}")
+        print(f"Equipament: {self.equipament}")
         print("-"*55)
     
     def add_item(self, item):
@@ -79,7 +81,7 @@ class Player:
                     item_chosen = data["item"]
 
                     item_chosen.use(self)
-
-                    data["quantity"] -= 1
-                    if data["quantity"] == 0:
-                        del self.inventory[choice]
+                    if item_chosen.consumable:
+                        data["quantity"] -= 1
+                        if data["quantity"] == 0:
+                            del self.inventory[choice]

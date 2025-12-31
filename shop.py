@@ -1,15 +1,16 @@
 # Import de itens de cura
 from itens import BasicHealPotion, FullHealPotion
-# Favor conforme mais itens serem adicionados separar em categoria
-# EX: Import armaduras
-# from itens imort ArmaduraFodona
-# Não sei se vai pesar importar tudo separado mas azar
+# Import de equipamentos
+from itens import Scarf, Crown, Cape
 
 class Shop:
     def __init__(self):
         self.itens = [
             BasicHealPotion,
-            FullHealPotion
+            FullHealPotion,
+            Scarf,
+            Crown,
+            Cape
         ]
 
     def buy(self, player_buying):
