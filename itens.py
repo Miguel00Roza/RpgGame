@@ -67,9 +67,12 @@ class Equipaments(Item):
         player.max_life -= self.hp_bonus
         player.damage -= self.damage_bonus
 
+        # Se a vida do player for maior que a vida maxima ele deixa ele com a vida max base
+        if player.life > player.max_life:
+            player.life = player.max_life
+
         # Adiciona o item ao inventario de volta
         player.add_item(self)
-
         player.equipament = None
     
     def use(self, player):
