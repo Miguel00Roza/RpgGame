@@ -108,7 +108,7 @@ class Crown(Equipaments):
             name="Crown",
             description="The crown of an ancient war king, It has some gems in it that may be worth some money",
             price=120,
-            hp_bonus=20,
+            hp_bonus=15,
             damage_bonus=5
         )
     
@@ -119,5 +119,5 @@ class Cape(Equipaments):
             description="A nice cape, typical of a hero",
             price=90,
             hp_bonus=10,
-            damage_bonus=15
+            damage_bonus=10
         )
