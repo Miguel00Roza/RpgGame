@@ -1,5 +1,5 @@
 import pygame
-
+ 
 def RunGame():
     pygame.init()
 
@@ -10,28 +10,56 @@ def RunGame():
 
     clock = pygame.time.Clock()
 
-    player_sprite = pygame.image.load("./src/assets/teste.png").convert()
+    MAP = [
+    "####################",
+    "#..................#",
+    "#..................#",
+    "#..................#",
+    "#..P...............#",
+    "#..................#",
+    "####################"
+    ]
 
-    player_sprite = pygame.transform.scale(player_sprite, (player_sprite.get_width() * 2, player_sprite.get_height() * 2))
-    x = 100
-    y = 100
-    position = (100, 100)
+    TILE = 32 # 32x32 pixels
+    walls = []
+    player_pos = None
 
+    for y, line in enumerate(MAP):
+        for x, col in enumerate(line):
+            # coluna = letra, ou seja cada letra é uma coluna
+
+            world_x = x * TILE
+            world_y = y * TILE
+
+            if col == "#":
+                walls.append(pygame.Rect(world_x, world_y, TILE, TILE))
+
+            if col == "P":
+                player_pos = (world_x, world_y)
+
+    player = pygame.image.load("./src/assets/teste.png").convert()
+    
     running = True
+    # Dentro do mapa inserimos apenas 3 coisas nesta ordem
+    # 1 - Le inputs do player ( Teclado e mouse )
+    # 2 - Atualiza a logica, ( Movimento, colisao, vida e etc... )
+    # 3 - Desenha o mapa
     while running:
+        # Lê inuts
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    x, y = pygame.mouse.get_pos()
 
-        
+        # 2 - Atualiza a logica
 
-        screen.fill((30, 30, 30))
-        position = (x, y)
-        screen.blit(player_sprite, position)
 
+
+        # 3 - Desenha o mapa
+        for wall in walls:
+            pygame.draw.rect(screen, (100, 0, 100), wall)
+
+        screen.blit(player, player_pos)
         pygame.display.flip()
         clock.tick(30) # Limite de 30 fps
     
